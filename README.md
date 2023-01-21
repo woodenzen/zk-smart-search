@@ -4,27 +4,17 @@ Tool that helps to easier find "zettels" in large zettelkastens.
 
 ## Usage (Example)
 
-To search for zettels containing the term "my zettelkasten" (or at least "my" and "zettelkasten"), simply type `zkss my zettelkasten` in your terminal and press enter. I get the following results (shortened):
+To search for zettels containing the term "my zettelkasten" (or at least "my" and "zettelkasten"), simply type `zkss my zettelkasten` in your terminal and press enter. This is what it can look like:
 
-    $ zkss my zettelkasten
-    - "my zettelkasten" in filename:
-        202211261148 using VS Code for my Zettelkasten
-        202204070958 my zettelkasten
-        202204161345 version control for my zettelkasten
-        202204130750 my zettelkasten scripts
-    - "my" and "zettelkasten" in filename:
-        202212102041 zettelkasten for my ideas
-    - "my zettelkasten" in content:
-        202203151020 zettelkasten
-        202204031957 automate everything that can be automated
-        202203151039 The Archive
-        202211011945 1Writer
-    - "my" and "zettelkasten" in content:
-        202208291407 get last access time of a file with Python
-        202204121937 smart search for zettelkasten
 
-        
-The results are grouped, as you can see, and sorted by `last accessed`. Every zettel occurs only once in the result list. 
+[](https://user-images.githubusercontent.com/46703936/213792583-75f8f0d6-439c-43ef-af63-cc0aef314d5a.mp4)
+
+       
+The results are grouped, as you can see, and sorted by `last accessed`. Every zettel occurs only once in the result list.
+
+You can "pipe" the result to handle the output, e.g.
+
+    $ zkss my zettelkasten | grep "search"
 
 ## Why zkss?
 
@@ -34,17 +24,25 @@ By structuring the search results and showing the presumably most relevant first
 
 ## Installation
 
-First, you need Python, of course. On a Mac, it works best with brew.
+First, you need Python, of course. On a Mac, it [works best with Homebrew](https://docs.brew.sh/Homebrew-and-Python). I even prefer [pyenv](https://realpython.com/intro-to-pyenv/) because it can handle different versions of Python on the same machine.
 
-Download the files from GitHub (or use `git clone`). I chose the directory `code` in my home-directory.
+Download the files above from GitHub (or use `git clone https://github.com/ralfzosel/zk-smart-search.git`). I chose the directory `code` in my home-directory.
 
-Usually, a virtual environment is recommended (though we only have one package to install with `pip` - namely `rich` for colorful results).
+⚠️ If you choose another directory, you have to change the PATH variable in `.zshenv` see below.
 
-To be able to start the script in the terminal by simply typing `zkss`, you have to add the following line in your `.zshenv`-file in your home directory (on a Mac):
+Usually, for Python, a virtual environment is recommended (though we only have _one_ package to install with `pip` - namely `rich` for colorful results). This can be done with [venv](https://docs.python.org/3/library/venv.html) or via `pyenv` (see above).
+
+To be able to start the script in the terminal by simply typing `zkss`, you have to add the following line to your `.zshenv`-file in your home directory (on a Mac):
 
     export PATH=~/code/zk-smart-search:$PATH
 
-Restart your terminal to make it work.
+If you installed the script to another directory, you have to change the line.
+
+Furthermore, to +make colored output work, you have to add the following line to your `.zshenv`-file:
+
+    export LESS=-r
+
+Restart your terminal to make the changes of `.zshenv` work.
 
 ## Configuration
 
@@ -55,10 +53,13 @@ Change the file `settings.py` according to your needs:
 
 ## Further ideas
 
-- Look for _exact_ matches first, i.e. if you are searching e.g. for "zettel", something with "zettelkasten" won't show up first.
-- Build a GUI (with something like Flet?).
-- Integrate smart search in The Archive. ;-)
+
+- Integrate smart search in [The Archive](https://zettelkasten.de/the-archive/). ;-)
+
+Further ideas and improvements are welcome.
 
 ## Disclaimer
+
+I have only tested on macOS, so I have now idea if it works on Windows, too.
 
 When it comes to Python, I am just a hobbyist and this is my _first_ project I am publishing on GitHub. So it's very likely I made some mistakes. Please bear with me.
