@@ -40,7 +40,7 @@ If you installed the script to another directory, you have to change the line.
 
 Furthermore, to +make colored output work, you have to add the following line to your `.zshenv`-file:
 
-    export LESS=-r
+    ~~
 
 Restart your terminal to make the changes of `.zshenv` work.
 
