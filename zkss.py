@@ -12,7 +12,6 @@ SPLIT_CHARACTERS = "[ \.,\[\]\(\)\n]"
 def strip_ending(filename):
     return re.search(rf"(.*){ENDING}$", filename).group(1)
 
-
 file_and_folder_names = os.listdir(ZK_BASE_DIR)
 
 

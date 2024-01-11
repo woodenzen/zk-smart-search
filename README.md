@@ -1,4 +1,4 @@
-# zk-smart-search
+/# zk-smart-search
 
 Tool that helps to easier find "zettels" in large zettelkastens.
 
@@ -41,6 +41,8 @@ If you installed the script to another directory, you have to change the line.
 Furthermore, to +make colored output work, you have to add the following line to your `.zshenv`-file:
 
     ~~
+
+  
 
 Restart your terminal to make the changes of `.zshenv` work.
 
