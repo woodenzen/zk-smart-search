@@ -2,8 +2,8 @@
 <html>
 
 <head>
-    <title>Zettelkasting Idea Explorer</title>
-    <link rel="stylesheet" type="text/css" href="/Users/will/Dropbox/Projects/zettelkasten/IdeaExplorer/style.css">
+    <title>Near Term Search</title>
+    <link rel="stylesheet" type="text/css" href="/Users/will/Dropbox/Projects/zettelkasten/SmartSearch/style.css">
 
     <script type="text/javascript">
 
@@ -118,33 +118,16 @@
 <body>
     <div class="tab">
         <button class="tablinks" onclick="openTab(event, 'tab1')">Idea Explorer</button>
-        <button class="tablinks" onclick="openTab(event, 'tab2')">Tag Map</button>
-        <button class="tablinks" onclick="openTab(event, 'tab3')">Subatomic</button>
         </div>
 
     <div id="tab1" class="tabcontent">
         <div id="TablePlaceHolder">
             <script>
-                document.getElementById("TablePlaceHolder").innerHTML = window.KeyboardMaestro.GetVariable("theTable");
+                document.getElementById("TablePlaceHolder").innerHTML = window.KeyboardMaestro.GetVariable("targetSentences");
             </script>
         </div>
     </div>
 
-    <div id="tab2" class="tabcontent">
-        <div id="TagMapPlaceHolder">
-            <script>
-                document.getElementById("TagMapPlaceHolder").innerHTML = window.KeyboardMaestro.GetVariable("theTagMap");
-            </script>
-        </div>
-    </div>
-
-    <div id="tab3" class="tabcontent">
-        <div id="SubatomicPlaceHolder">
-            <script>
-                document.getElementById("SubatomicPlaceHolder").innerHTML = window.KeyboardMaestro.GetVariable("theSubatomic");
-            </script>
-        </div>
-    </div>
 
     <div id="divButtons" style="text-align:center; margin-top: 10px;">
         <input type="button" value="Cancel" onclick="cancelWindow('Cancel')">
