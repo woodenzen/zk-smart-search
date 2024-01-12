@@ -36,14 +36,20 @@ def find_matching_files(directory, words, max_distance):
     return file_links
 
 if __name__ == "__main__":
+
+    # search_terms = os.environ["KMVAR_Search_Term"]
+    # search_terms = [search_terms]
+    search_terms = ["rational", "decision-making"]
+    # distance = os.environ["KMVAR_distance"]
+    distance = 15
 # Prompt the user for words
-    words_input = input("Enter words separated by comma: ")
-    words = [word.strip() for word in words_input.split(",")]
+    # words_input = input("Enter words separated by comma: ")
+    # words = [word.strip() for word in words_input.split(",")]
 
     # Prompt the user for distance
-    distance = int(input("Enter distance: "))
+    # distance = int(input("Enter distance: "))
 
-    file_links = find_matching_files("/Users/will/Dropbox/zettelkasten", words, distance)
+    file_links = find_matching_files("/Users/will/Dropbox/zettelkasten", search_terms, distance)
         
     # Remove duplicates while preserving order
     seen = set()
