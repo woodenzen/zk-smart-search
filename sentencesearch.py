@@ -1,5 +1,7 @@
 import os
 import re
+import html
+import pandas as pd
 
 def find_matching_files(directory, words, max_distance):
     file_links = []
@@ -28,14 +30,42 @@ def find_matching_files(directory, words, max_distance):
     #  Sort file_links based on the number of matching words and the distance
     file_links.sort(key=lambda x: (-len(x[2]), x[3]))
     # Format the links after sorting
-    file_links = [f"[{file_name} - {distance}](thearchive://match/›{link} {' '.join(words)})" for link, file_name, words, distance in file_links]
+    #NOTE - <a href="url">link text</a>
+    file_links = [f'<a href="thearchive://match/›{link}">{file_name} - {distance}</a>' for link, file_name, words, distance in file_links]
+    # file_links = [f"[{file_name} - {distance}](thearchive://match/›{link} {' '.join(words)})" for link, file_name, words, distance in file_links]
     return file_links
 
 if __name__ == "__main__":
-    file_links = find_matching_files("/Users/will/Dropbox/zettelkasten", ["sky","tree", "cloud"], 100)
+# Prompt the user for words
+    words_input = input("Enter words separated by comma: ")
+    words = [word.strip() for word in words_input.split(",")]
+
+    # Prompt the user for distance
+    distance = int(input("Enter distance: "))
+
+    file_links = find_matching_files("/Users/will/Dropbox/zettelkasten", words, distance)
+        
     # Remove duplicates while preserving order
     seen = set()
     file_links = [x for x in file_links if not (x in seen or seen.add(x))]
-    for file in file_links:
-        print(f'{file}')
+    # html_table = "<table>\n"
+
+    # for file in file_links:
+    #     # Escape the file link to ensure it's safe to include in HTML
+    # #     escaped_file = html.escape(file)
         
+    # #     # Add a row to the table for this file link
+    # #     html_table += f"  <tr><td>{escaped_file}</td></tr>\n"
+
+    # # # End the HTML table
+    # # html_table += "</table>"
+
+    # # print(html_table)
+
+    # Create a DataFrame from the file_links list
+df = pd.DataFrame(file_links, columns=['File Links'])
+
+# Convert the DataFrame to an HTML table
+html_table = df.to_html(escape=False)
+
+print(html_table)
