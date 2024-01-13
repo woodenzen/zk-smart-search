@@ -5,7 +5,7 @@ description = ""
 authors = ["Will Simpson <will@kestrelcreek.com>"]
 
 [tool.poetry.dependencies]
-python = ">=3.9,<4.0"
+python = "^3.8.12"
 pandas = "^2.0.3"
 rich = "^13.7.0"
 collections2 = "^0.3.0"
