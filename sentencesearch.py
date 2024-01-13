@@ -1,12 +1,16 @@
 import os
+import pathlib
 import re
 import html
 import pandas as pd
+from archive_path import TheArchivePath
 
-def find_matching_files(directory, words, max_distance):
+zettelkasten = pathlib.Path(TheArchivePath())
+
+def find_matching_files(words, max_distance):
     file_links = []
     
-    for root, dirs, files in os.walk(directory):
+    for root, dirs, files in os.walk(zettelkasten):
         for file in files:
             if file.endswith(".md"):
                 file_path = os.path.join(root, file)
@@ -31,7 +35,7 @@ def find_matching_files(directory, words, max_distance):
     file_links.sort(key=lambda x: (-len(x[2]), x[3]))
     # Format the links after sorting
     #NOTE - <a href="url">link text</a>
-    file_links = [f'<a href="thearchive://match/›{link}">{file_name} - {distance}</a>' for link, file_name, words, distance in file_links]
+    file_links = [f'<a href="thearchive://match/›{link}%20{"%20".join(words)}">{file_name} - {distance}</a>' for link, file_name, words, distance in file_links]
     # file_links = [f"[{file_name} - {distance}](thearchive://match/›{link} {' '.join(words)})" for link, file_name, words, distance in file_links]
     return file_links
 
@@ -49,7 +53,7 @@ if __name__ == "__main__":
     # Prompt the user for distance
     # distance = int(input("Enter distance: "))
 
-    file_links = find_matching_files("/Users/will/Dropbox/zettelkasten", search_terms, distance)
+    file_links = find_matching_files(search_terms, distance)
         
     # Remove duplicates while preserving order
     seen = set()
